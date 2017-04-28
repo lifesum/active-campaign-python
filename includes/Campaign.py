@@ -127,8 +127,8 @@ if __name__ == '__main__':
     }
     from time import time
     time2 = time()
-    print ac.api('campaign/create', campaign)
-    print 'diff2 = %.5f seconds' %(time() - time2)
+    print(ac.api('campaign/create', campaign))
+    print('diff2 = %.5f seconds' %(time() - time2))
     
 
     ## delete
