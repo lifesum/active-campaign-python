@@ -1,7 +1,7 @@
 from includes.Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
 from includes.ActiveCampaign import ActiveCampaign
 import json
-import urllib2, urllib
+import urllib
 
 class User(ActiveCampaign):
 
