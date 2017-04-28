@@ -1,1 +1,1 @@
-__all__ = ['Account','ActiveCampaign','Campaign','Connector','Design','Form','Group','List','Message','Subscriber','User']
+__all__ = ['Account','ActiveCampaign','Campaign','Config','Connector','Design','Form','Group','List','Message','Subscriber','User']
