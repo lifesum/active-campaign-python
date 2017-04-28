@@ -28,4 +28,4 @@ class Connector():
 
 if __name__ == '__main__':
     c = Connector(ACTIVECAMPAIGN_URL,  ACTIVECAMPAIGN_API_KEY)
-    print c.credentials_test()
+    print(c.credentials_test())
