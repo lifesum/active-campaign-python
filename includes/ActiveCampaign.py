@@ -40,7 +40,7 @@ class ActiveCampaign(Connector):
             component = 'auth'
 
         class1 = '%s' % component.capitalize() # IE: "subscriber" becomes "Subscriber"
-        source_module = __import__(class1, globals(), locals(), [], -1) # import Subscriber
+        source_module = __import__(class1, globals(), locals(), [], 0) # import Subscriber
         class1 = getattr(source_module, class1) # get Subscriber
         class1 = class1(ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY) # Subscriber()
         # subscriber.view()
