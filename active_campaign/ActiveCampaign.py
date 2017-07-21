@@ -45,7 +45,8 @@ class ActiveCampaign(Connector):
         else:
             classname = component.capitalize()
 
-        factory = getattr(active_campaign, classname)
+        module = getattr(active_campaign, classname)
+        factory = getattr(module, classname)
         endpoint = factory(ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY)
 
         if method == 'list':
