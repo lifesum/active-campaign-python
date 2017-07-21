@@ -1,5 +1,5 @@
 import json
-from includes.Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
+from .Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
 import urllib
 
 class Connector():

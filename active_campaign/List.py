@@ -1,6 +1,6 @@
 
-from includes.Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
-from includes.ActiveCampaign import ActiveCampaign
+from .Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
+from .ActiveCampaign import ActiveCampaign
 import json
 import urllib
 
