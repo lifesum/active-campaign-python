@@ -1,18 +1,16 @@
-from importlib import import_module
-
-
 from .Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
 from .Connector import Connector
 
+import active_campaign
+
 
 class ActiveCampaign(Connector):
-
-    def __init__(self, url, api_key, api_user = '', api_pass = ''):
+    def __init__(self, url, api_key, api_user='', api_pass=''):
         self.url = url
         self.api_key = api_key
         Connector.__init__(self, url, api_key, api_user, api_pass)
 
-    def api(self, path, post_data = {}):
+    def api(self, path, post_data={}):
         # IE: "subscriber/view"
         components = path.split('/')
         component = components[0]
@@ -35,23 +33,26 @@ class ActiveCampaign(Connector):
         # adjustments
         if component == 'branding':
             # reserved word
-            component = 'design'
-        elif component == 'sync':
-            component = 'subscriber'
-            method = 'sync'
-        elif component == 'singlesignon':
-            component = 'auth'
+            classname = 'Design'
 
-        class1 = '%s' % component.capitalize() # IE: "subscriber" becomes "Subscriber"
-        source_module = import_module('.'+class1, 'includes') # import Subscriber
-        class1 = getattr(source_module, class1) # get Subscriber
-        class1 = class1(ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY) # Subscriber()
-        # subscriber.view()
+        elif component == 'sync':
+            classname = 'Subscriber'
+            method = 'sync'
+
+        elif component == 'singlesignon':
+            classname = 'Auth'
+
+        else:
+            classname = component.capitalize()
+
+        factory = getattr(active_campaign, classname)
+        endpoint = factory(ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY)
 
         if method == 'list':
             # reserved word
             method = 'list_'
 
-        if method in dir(class1):
-            return getattr(class1, method)(params, post_data)
-        return None
+        if method in dir(endpoint):
+            return getattr(endpoint, method)(params, post_data)
+
+        raise Exception('endpoint not yet implemented')

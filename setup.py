@@ -1,7 +1,7 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
-    name='ActiveCampaign',
+    name='active-campaign',
     version='0.0.1',
     author='mo',
     packages=['active_campaign'],
