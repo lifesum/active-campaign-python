@@ -3,6 +3,7 @@ from .Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
 from .ActiveCampaign import ActiveCampaign
 import json
 import urllib
+import urllib.request
 
 class Group(ActiveCampaign):
 
@@ -31,7 +32,7 @@ class Group(ActiveCampaign):
     def edit(self, params, post_data):
         request_url = '%s&api_action=group_edit&api_output=%s' % (self.url, self.output)
         post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
+        req = urllib.request.Request(request_url, post_data)
         response = json.loads(urllib.request.urlopen(req).read())
         return response
         

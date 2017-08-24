@@ -3,6 +3,7 @@ from .Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
 from .ActiveCampaign import ActiveCampaign
 import json
 import urllib
+import urllib.request
 
 class Account(ActiveCampaign):
 
@@ -20,7 +21,7 @@ class Account(ActiveCampaign):
 
     def cancel(self, params, post_data = {}):
         request_url = '%s&api_action=account_cancel&api_output=%s&%s' % (self.url, self.output, params)
-        response = json.loads(urllib2.urlopen(request_url).read())
+        response = json.loads(urllib.request.urlopen(request_url).read())
         return response
         
     def edit(self, params, post_data):

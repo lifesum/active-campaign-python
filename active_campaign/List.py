@@ -3,6 +3,7 @@ from .Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
 from .ActiveCampaign import ActiveCampaign
 import json
 import urllib
+import urllib.request
 
 class List(ActiveCampaign):
 
@@ -31,14 +32,14 @@ class List(ActiveCampaign):
     def edit(self, params, post_data):
         request_url = '%s&api_action=list_edit&api_output=%s' % (self.url, self.output)
         post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
+        req = urllib.request.Request(request_url, post_data)
         response = json.loads(urllib.request.urlopen(req).read())
         return response
 
     def field_add(self, params, post_data):
         request_url = '%s&api_action=list_field_add&api_output=%s' % (self.url, self.output)
         post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
+        req = urllib.request.Request(request_url, post_data)
         response = json.loads(urllib.request.urlopen(req).read())
         return response
 
@@ -50,7 +51,7 @@ class List(ActiveCampaign):
     def field_edit(self, params, post_data):
         request_url = '%s&api_action=list_field_edit&api_output=%s' % (self.url, self.output)
         post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
+        req = urllib.request.Request(request_url, post_data)
         response = json.loads(urllib.request.urlopen(req).read())
         return response
 
