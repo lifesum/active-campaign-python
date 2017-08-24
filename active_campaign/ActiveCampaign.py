@@ -1,4 +1,3 @@
-from .Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
 from .Connector import Connector
 
 import active_campaign
@@ -7,6 +6,8 @@ import active_campaign
 class ActiveCampaign(Connector):
     def __init__(self, url, api_key, api_user='', api_pass=''):
         self.url = url
+        # Connector.__init__ rewrites self.url, so we can't use it in the factory method below
+        self.orig_url = url
         self.api_key = api_key
         Connector.__init__(self, url, api_key, api_user, api_pass)
 
@@ -47,7 +48,7 @@ class ActiveCampaign(Connector):
 
         module = getattr(active_campaign, classname)
         factory = getattr(module, classname)
-        endpoint = factory(ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY)
+        endpoint = factory(self.orig_url, self.api_key)
 
         if method == 'list':
             # reserved word
