@@ -2,7 +2,7 @@ from .Config import ACTIVECAMPAIGN_URL, ACTIVECAMPAIGN_API_KEY
 from .ActiveCampaign import ActiveCampaign
 import json
 import urllib
-import datetime
+import urllib.request
 
 class Message(ActiveCampaign):
 
@@ -31,7 +31,7 @@ class Message(ActiveCampaign):
     def edit(self, params, post_data):
         request_url = '%s&api_action=message_edit&api_output=%s' % (self.url, self.output)
         post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
+        req = urllib.request.Request(request_url, post_data)
         response = json.loads(urllib.request.urlopen(req).read())
         return response
 
@@ -43,7 +43,7 @@ class Message(ActiveCampaign):
     def template_add(self, params, post_data):
         request_url = '%s&api_action=message_template_add&api_output=%s' % (self.url, self.output)
         post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
+        req = urllib.request.Request(request_url, post_data)
         response = json.loads(urllib.request.urlopen(req).read())
         return response
 
@@ -60,7 +60,7 @@ class Message(ActiveCampaign):
     def template_edit(self, params, post_data):
         request_url = '%s&api_action=message_template_edit&api_output=%s' % (self.url, self.output)
         post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
+        req = urllib.request.Request(request_url, post_data)
         response = json.loads(urllib.request.urlopen(req).read())
         return response
 
@@ -72,7 +72,7 @@ class Message(ActiveCampaign):
     def template_import(self, params, post_data):
         request_url = '%s&api_action=message_template_import&api_output=%s' % (self.url, self.output)
         post_data = urllib.urlencode(post_data)
-        req = urllib2.Request(request_url, post_data)
+        req = urllib.request.Request(request_url, post_data)
         response = json.loads(urllib.request.urlopen(req).read())
         return response
 
